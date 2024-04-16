@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>Простая форма с просторов</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+
+<body>
+	<div class="container-fluid">
+		<div class="row">
+			<div>
+				<div>
+					<h4 class="text-center mb-4">
+						Анализ текста
+					</h4>
+					<form action="", method="post" enctype="multipart/form-data">
+						{% csrf_token %}
+                        <label for="file">Загрузите текстовый файл</label>
+                        <div class="form-input">
+                            <span><i class="fa-file-text-o"></i></span>
+							<input type="file" id="file" accept=".txt" name="file">
+						</div>
+						<div class="mb-3">
+							<button type="submit" class="btn btn-block" name="add_file">
+								расчитать документ и сохранить в базу
+							</button>
+						</div>
+						<div class="mb-3">
+							<button type="submit" class="btn btn-block" name="recount">
+								Пересчет idf (в случае если были корректировки в базе)
+							</button>
+						</div>
+					</form>
+					<table>
+						{% if object_list0 %}
+							<thead>
+								<th>name</th>
+								<th>tf</th>
+								<th>idf</th>
+							</thead>
+							<tbody id="table_tf">
+								<tbody>
+									{% for word in object_list0 %}
+										<tr>
+											<td>{{ word.name }}</td>
+											<td>{{ word.tf }}</td>
+											<td>{{ word.idf }}</td>
+										</tr>
+									{% endfor %}
+								</tbody>
+							</tbody>
+						{% endif %}
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+</html>
